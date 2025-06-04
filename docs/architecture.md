@@ -43,7 +43,88 @@
 
 系统采用经典的多层架构，确保各层职责清晰，易于维护和扩展。
 
-<img src="images/arch.png" width="100%" />
+
+```mermaid
+graph TD
+    subgraph USER_LAYER[用户交互层（User Interface Layer）]
+        direction LR
+        UI_Chat[对话式AI助手（Conversational AI Assistant）]
+        UI_Portal[统一业务门户（Unified Business Portal）]
+    end
+
+    subgraph GW_LAYER[API网关层（API Gateway Layer）]
+        API_Gw[API网关（API Gateway）<br/>路由、认证、限流、监控]
+    end
+
+    subgraph SERVICE_LAYER[核心服务层（Core Services Layer）]
+        direction LR
+        subgraph MICROSERVICES[微服务集群（Microservices Cluster）]
+            MS_GenAI[慧营销服务（GenAI Marketing Service）]
+            MS_AIOps[慧运维服务（AIOps Service）]
+            MS_AISec[慧安全服务（AI Security Service）]
+            MS_Collab[慧协同服务（Collaboration Service）]
+            MS_Knowledge[知识库服务（Knowledge Base Service）]
+            MS_User[用户管理服务（User Management Service）]
+            MS_Analytics[数据分析服务（Data Analytics Service）]
+            MS_Billing[计费服务（Billing Service）]
+            MS_Notification[通知服务（Notification Service）]
+        end
+    end
+
+    subgraph DATA_LAYER[数据与知识层（Data & Knowledge Layer）]
+        direction LR
+        DS_KnowledgeBase[企业知识库（Enterprise Knowledge Base）<br/>文档、SOP、案例]
+        DS_BusinessData[业务数据（Business Data）<br/>CRM、ERP - 需授权]
+        DS_PlatformData[平台数据（Platform Data）<br/>安全日志、监控数据]
+        DS_PublicData[公共数据（Public Data）<br/>行业资讯、市场趋势]
+        DS_SystemDB[系统数据库（System Databases）<br/>用户、配置、元数据]
+        DS_VectorDB[向量数据库（Vector Database）<br/>用于RAG]
+        DS_TSDB[时序数据库（Time Series Database）<br/>监控指标]
+        DS_LogStore[日志存储（Log Storage）<br/>审计与分析日志]
+        DS_ObjectStore[对象存储（Object Storage）<br/>模型、素材、报告]
+    end
+
+    subgraph INFRA_LAYER[基础设施层（Infrastructure Layer）]
+        direction LR
+        INFRA_K8S[Kubernetes集群（Kubernetes Cluster）]
+        INFRA_Models[AI模型（AI Models）<br/>大语言模型、行业模型、AIOps/安全模型]
+        INFRA_MQ[消息队列（Message Queue）<br/>服务间异步通信]
+        INFRA_Cache[分布式缓存（Distributed Cache）]
+    end
+
+    USER_LAYER --> API_Gw
+    API_Gw --> MICROSERVICES
+    MICROSERVICES --> INFRA_MQ
+    MICROSERVICES --> DS_SystemDB
+    MICROSERVICES --> DS_VectorDB
+    MICROSERVICES --> DS_TSDB
+    MICROSERVICES --> DS_LogStore
+    MICROSERVICES --> DS_ObjectStore
+    MICROSERVICES --> INFRA_Cache
+    MICROSERVICES -- 调用/微调 --> INFRA_Models
+    MS_Knowledge -- 管理 --> DS_KnowledgeBase
+    MS_Analytics -- 分析 --> DS_BusinessData
+    MS_AIOps -- 分析 --> DS_PlatformData
+    MS_GenAI -- 利用 --> DS_PublicData
+
+    DS_KnowledgeBase -- RAG --> MS_Knowledge
+    DS_BusinessData -- 输入 --> MS_Analytics
+    DS_PlatformData -- 输入 --> MS_AIOps
+    DS_PublicData -- 输入 --> MS_GenAI
+
+
+    classDef user fill:#c9f,stroke:#333,stroke-width:2px;
+    classDef api fill:#orange,stroke:#333,stroke-width:2px;
+    classDef service fill:#lightgreen,stroke:#333,stroke-width:2px;
+    classDef data fill:#lightblue,stroke:#333,stroke-width:2px;
+    classDef infra fill:#lightgrey,stroke:#333,stroke-width:2px;
+
+    class USER_LAYER,UI_Chat,UI_Portal user;
+    class GW_LAYER,API_Gw api;
+    class SERVICE_LAYER,MICROSERVICES,MS_GenAI,MS_AIOps,MS_AISec,MS_Collab,MS_Knowledge,MS_User,MS_Analytics,MS_Billing,MS_Notification service;
+    class DATA_LAYER,DS_KnowledgeBase,DS_BusinessData,DS_PlatformData,DS_PublicData,DS_SystemDB,DS_VectorDB,DS_TSDB,DS_LogStore,DS_ObjectStore data;
+    class INFRA_LAYER,INFRA_K8S,INFRA_Models,INFRA_MQ,INFRA_Cache infra;
+```
 
 **架构解读**：
 
@@ -117,7 +198,111 @@ sequenceDiagram
 
 ### 3.3. 概念部署架构
 
-<img src="images/deploy.png" width="100%" />
+```mermaid
+graph TD
+    subgraph INTERNET[互联网（Internet）]
+        Users[企业用户（Enterprise Users）<br/>Web/Mobile]
+    end
+
+    subgraph DMZ[DMZ区]
+        LB_External[外部负载均衡器（External Load Balancer）]
+        WAF[Web应用防火墙（WAF）]
+        APIGateway[API网关（API Gateway）]
+    end
+
+    subgraph K8S_CLUSTER[Kubernetes集群（Kubernetes Cluster） - 生产环境]
+        direction LR
+        subgraph K8S_MASTER[Master节点（Master Nodes）]
+            KubeAPI[API Server]
+            Etcd[etcd]
+            Scheduler[Scheduler]
+            ControllerManager[Controller Manager]
+        end
+
+        subgraph K8S_WORKERS[Worker节点（Worker Nodes）]
+            subgraph POD_GROUP_CORE[核心业务服务Pod（Core Business Service Pods）]
+                GenAISvc_Pod[慧营销服务实例（GenAI Service Instance）]
+                AIOpsSvc_Pod[慧运维服务实例（AIOps Service Instance）]
+                AISecSvc_Pod[慧安全服务实例（AI Security Service Instance）]
+                CollabSvc_Pod[慧协同服务实例（Collaboration Service Instance）]
+                %% ... 其他核心服务
+            end
+
+            subgraph POD_GROUP_SUPPORT[支撑服务Pod（Supporting Service Pods）]
+                UserSvc_Pod[用户服务实例（User Service Instance）]
+                KnowledgeSvc_Pod[知识库服务实例（Knowledge Service Instance）]
+                NotificationSvc_Pod[通知服务实例（Notification Service Instance）]
+                %% ... 其他支撑服务
+            end
+
+            subgraph POD_GROUP_INFRA[基础设施组件Pod（Infrastructure Component Pods）]
+                Monitoring[监控代理（Monitoring Agent）<br/>Prometheus Node Exporter]
+                Logging[日志代理（Logging Agent）<br/>Fluentd/Filebeat]
+                Tracing[追踪代理（Tracing Agent）<br/>OpenTelemetry Collector]
+            end
+
+             InferenceServer_Pod[AI模型推理服务（AI Model Inference Server）<br/>Triton / TorchServe]
+        end
+
+        LB_Internal[内部负载均衡器（Internal Load Balancer）]
+        IngressController[Ingress控制器（Ingress Controller）]
+    end
+
+    subgraph DATA_STORAGE_SERVICES[数据存储服务（Data Storage Services） - 可云托管或自建]
+        direction TB
+        RelationalDB[关系型数据库（Relational DB）<br/>PostgreSQL/MySQL]
+        VectorDB[向量数据库（Vector DB）<br/>Milvus/Weaviate]
+        TSDB[时序数据库（TSDB）<br/>Prometheus/Mimir]
+        LogStoreES[日志存储（Log Store）<br/>Elasticsearch]
+        ObjectStoreS3[对象存储（Object Storage）<br/>MinIO/S3]
+        MessageQueue[消息队列（Message Queue）<br/>Kafka/RabbitMQ]
+        Cache[分布式缓存（Distributed Cache）<br/>Redis]
+    end
+
+    subgraph CI_CD_MONITORING[CI/CD与监控平台（CI/CD & Monitoring Platform）]
+        CICD_Jenkins[CI/CD流水线（CI/CD Pipeline）<br/>Jenkins/GitLab CI/ArgoCD]
+        Metrics_Grafana[指标可视化（Metrics Visualization）<br/>Grafana]
+        Logs_Kibana[日志可视化（Log Visualization）<br/>Kibana]
+        Tracing_Jaeger[分布式追踪（Distributed Tracing）<br/>Jaeger/Zipkin]
+    end
+
+    Users --> LB_External
+    LB_External --> WAF
+    WAF --> APIGateway
+    APIGateway -- HTTPS --> IngressController
+    IngressController -- 路由 --> LB_Internal
+    LB_Internal -- 负载均衡 --> POD_GROUP_CORE
+    LB_Internal -- 负载均衡 --> POD_GROUP_SUPPORT
+
+    POD_GROUP_CORE -- 数据读写 --> DATA_STORAGE_SERVICES
+    POD_GROUP_SUPPORT -- 数据读写 --> DATA_STORAGE_SERVICES
+    POD_GROUP_CORE -- 调用 --> InferenceServer_Pod
+    InferenceServer_Pod -- 加载模型 --> ObjectStoreS3 %% 模型文件存储在对象存储
+
+    K8S_WORKERS -- 监控数据 --> Metrics_Grafana
+    K8S_WORKERS -- 日志数据 --> Logs_Kibana
+    K8S_WORKERS -- 追踪数据 --> Tracing_Jaeger
+
+    %% Connections to infrastructure components within pods
+    GenAISvc_Pod -.-> Monitoring
+    GenAISvc_Pod -.-> Logging
+    GenAISvc_Pod -.-> Tracing
+
+    %% CI/CD flow (conceptual)
+    CICD_Jenkins -- 部署 --> K8S_CLUSTER
+
+    classDef internet fill:#eee,stroke:#333;
+    classDef dmz fill:#ffcc99,stroke:#333;
+    classDef k8s fill:#ccffff,stroke:#333;
+    classDef data_services fill:#e6ffcc,stroke:#333;
+    classDef cicd fill:#thistle,stroke:#333;
+
+    class Users internet;
+    class LB_External,WAF,APIGateway dmz;
+    class K8S_CLUSTER,K8S_MASTER,K8S_WORKERS,KubeAPI,Etcd,Scheduler,ControllerManager,POD_GROUP_CORE,POD_GROUP_SUPPORT,POD_GROUP_INFRA,GenAISvc_Pod,AIOpsSvc_Pod,AISecSvc_Pod,CollabSvc_Pod,UserSvc_Pod,KnowledgeSvc_Pod,NotificationSvc_Pod,InferenceServer_Pod,Monitoring,Logging,Tracing,LB_Internal,IngressController k8s;
+    class DATA_STORAGE_SERVICES,RelationalDB,VectorDB,TSDB,LogStoreES,ObjectStoreS3,MessageQueue,Cache data_services;
+    class CI_CD_MONITORING,CICD_Jenkins,Metrics_Grafana,Logs_Kibana,Tracing_Jaeger cicd;
+```
 
 **部署说明**：
 
