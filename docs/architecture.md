@@ -45,7 +45,7 @@
 
 
 ```mermaid
-graph TD
+graph LR
     subgraph USER_LAYER[用户交互层（User Interface Layer）]
         direction LR
         UI_Chat[对话式AI助手（Conversational AI Assistant）]
@@ -277,7 +277,8 @@ graph TD
     POD_GROUP_CORE -- 数据读写 --> DATA_STORAGE_SERVICES
     POD_GROUP_SUPPORT -- 数据读写 --> DATA_STORAGE_SERVICES
     POD_GROUP_CORE -- 调用 --> InferenceServer_Pod
-    InferenceServer_Pod -- 加载模型 --> ObjectStoreS3 %% 模型文件存储在对象存储
+    InferenceServer_Pod -- 加载模型 --> ObjectStoreS3 
+    %% 模型文件存储在对象存储
 
     K8S_WORKERS -- 监控数据 --> Metrics_Grafana
     K8S_WORKERS -- 日志数据 --> Logs_Kibana
