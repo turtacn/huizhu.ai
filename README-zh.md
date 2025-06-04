@@ -152,19 +152,19 @@ cd huizhu.ai
   * `cmd/`: 各微服务的主程序入口。
   * `configs/`: 配置文件和加载逻辑。
   * `deployments/`: Dockerfile 和 Kubernetes manifests。
-  * `docs/`: 项目文档，包括[架构设计文档](https://www.google.com/search?q=docs/architecture.md)。
+  * `docs/`: 项目文档，包括[架构设计文档](docs/architecture.md)。
   * `internal/`: 项目内部私有代码。
   * `pkg/`: 可被外部项目导入的公共库 (例如客户端 SDK)。
   * `scripts/`: 辅助脚本。
   * `test/`: 集成测试和端到端测试。
 
-更多详情，请参阅[架构设计文档](https://www.google.com/search?q=docs/architecture.md)。
+更多详情，请参阅[架构设计文档](docs/architecture.md)。
 
 ## 贡献指南
 
 我们欢迎对 Huizhu.AI 的任何贡献！无论是修复错误、开发新功能还是改进文档，您的帮助都至关重要。
 
-请阅读我们的 [**贡献指南 (`CONTRIBUTING.md`)**](https://www.google.com/search?q=CONTRIBUTING.md) (待创建)，其中包含关于开发流程、编码标准以及如何提交拉取请求的详细信息。
+请阅读我们的 [**贡献指南 (`CONTRIBUTING.md`)**](CONTRIBUTING.md) (待创建)，其中包含关于开发流程、编码标准以及如何提交拉取请求的详细信息。
 
 请使用 GitHub **Issue Tracker** 报告错误和建议功能。
 
