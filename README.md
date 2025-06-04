@@ -1,242 +1,227 @@
-# Huizhu.AI - Your Intelligent Business Co-Pilot
+# Huizhu.AI
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-available-orange.svg)](docs/architecture.md)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](#) [![Docs](https://img.shields.io/badge/Docs-Huizhu.AI-orange)](docs/architecture.md)
 
-**Huizhu.AI** (慧助AI - "HuiZhu AI for Enterprise") is a one-stop, conversational intelligent business operations support platform powered by Generative AI, AIOps, and AI Security capabilities. It aims to empower enterprise clients by addressing pain points in marketing, IT operations & security response, and internal collaboration & knowledge management. Through intelligent automation, Huizhu.AI strives to enhance operational efficiency and decision-making quality.
+**Huizhu.AI ("慧助AI"，企业智能业务伙伴 - Enterprise Intelligent Business Partner)** is a comprehensive platform designed to empower enterprise customers with AI-driven solutions for their daily business operations. It integrates Generative AI (GenAI), AIOps (AI for IT Operations), and AI Security capabilities into a unified, conversational interface.
 
-**Current Status:** Project Initialized - Architecture Design & Core Scaffolding in Progress.
+The primary goal of Huizhu.AI is to enhance operational efficiency, reduce costs, and improve decision-making by automating and augmenting tasks in marketing, IT operations, security, and internal collaboration.
 
-## ✨ Features (Planned)
+## Key Features
 
-Huizhu.AI will offer a suite of intelligent services, categorized as follows:
+Huizhu.AI offers a suite of intelligent modules:
 
-*   **🧠 GenAI Marketing (慧营销 - HuiMarketing)**
-    *   Automated generation of marketing copy (ads, social media posts, product descriptions).
-    *   Market trend analysis and insight generation.
-    *   Competitor analysis and reporting.
-    *   Personalized content recommendations.
-*   **⚙️ AIOps (慧运维 - HuiOps)**
-    *   Intelligent IT infrastructure monitoring and alerting.
-    *   Automated log analysis and anomaly detection.
-    *   Root cause analysis for incidents.
-    *   Predictive maintenance suggestions.
-*   **🛡️ AI Security (慧安全 - HuiSecurity)**
-    *   Security event correlation and intelligent interpretation.
-    *   Automated threat intelligence gathering.
-    *   Incident response suggestions and playbooks.
-    *   Compliance reporting assistance (e.g., GDPR, SOX).
-*   **🤝 Intelligent Collaboration (慧协同 - HuiCollab)**
-    *   Automatic meeting minute generation and summarization.
-    *   Smart document comparison and review (e.g., contracts).
-    *   Intelligent SOP (Standard Operating Procedure) search and Q&A.
-    *   Knowledge base creation and management.
-*   **📚 Enterprise Knowledge Base**
-    *   Centralized repository for internal documents, SOPs, case studies.
-    *   RAG (Retrieval Augmented Generation) capabilities for contextual Q&A.
-    *   Semantic search over enterprise data.
-*   **🌐 Unified Portal & Conversational AI**
-    *   A central web portal for accessing all services and dashboards.
-    *   A conversational AI assistant for interactive task execution and information retrieval.
-    *   Multi-tenancy support with role-based access control (RBAC).
+* **Smart Marketing (慧营销)**: Automates the creation of marketing materials (copywriting, ad creatives, short video scripts), provides market trend insights, and performs competitive analysis.
+* **Smart Operations (慧运维)**: Leverages AIOps for natural language-based IT fault diagnosis, log analysis, root cause identification, and proactive maintenance suggestions.
+* **Smart Security (慧安全)**: Uses AI to interpret security events, recommend incident responses, and assist with compliance checks and report generation.
+* **Smart Collaboration (慧协同)**: Facilitates internal knowledge management through AI-powered Q&A over enterprise knowledge bases, automated meeting summarization, document comparison, and workflow assistance.
 
-##  arquitetura Architecture Overview
+## Architecture Overview
 
-Huizhu.AI adopts a microservices architecture, primarily built with **Golang**, and designed for scalability, resilience, and maintainability.
+Huizhu.AI is built upon a **microservices architecture**, ensuring scalability, resilience, and maintainability. Key architectural layers include:
 
-Key architectural components:
+* **User Interface Layer**: Provides a conversational AI assistant and a unified business portal for user interaction.
+* **API Gateway Layer**: Acts as the single entry point for all client requests, handling routing, authentication, and rate limiting.
+* **Core Smart Services Layer**: Houses the main AI engines (GenAI, AIOps, AISec, Data Analytics).
+* **Domain Services Layer**: Contains business logic services like User Management, Knowledge Management, Notifications, etc.
+* **Infrastructure Layer**: Provides foundational support like databases, message queues, caching, and observability tools.
+* **Data & Knowledge Layer**: Manages various data sources crucial for AI model training and inference.
 
-1.  **User Interface Layer**:
-    *   **Conversational AI Assistant**: WebSocket-based chat interface.
-    *   **Unified Business Portal**: Web application (React/Vue).
-2.  **API Gateway Layer**:
-    *   Single entry point for all client requests (e.g., Traefik, Kong, or custom Go-based).
-    *   Handles routing, authentication (JWT), rate limiting, and basic monitoring.
-3.  **Core Services Layer (Microservices)**:
-    *   `GenAI Marketing Service`
-    *   `AIOps Service`
-    *   `AI Security Service`
-    *   `Collaboration Service`
-    *   `Knowledge Base Service`
-    *   `User Management Service`
-    *   `Data Analytics Service`
-    *   `Billing Service`
-    *   `Notification Service`
-    *   Communication: gRPC (primary), REST, Message Queues (Kafka/RabbitMQ).
-4.  **Data & Knowledge Layer**:
-    *   **Databases**: PostgreSQL (system data), Vector DB (Milvus/Weaviate for RAG), Time-Series DB (Prometheus/Mimir for metrics), Elasticsearch (logs).
-    *   **Storage**: Object Storage (MinIO/S3 for models, files), Distributed Cache (Redis).
-    *   **Data Sources**: Enterprise knowledge, business data (CRM, ERP - with authorization), platform data (logs, metrics), public data.
-5.  **Infrastructure Layer**:
-    *   **Containerization & Orchestration**: Docker, Kubernetes.
-    *   **AI Models**: LLMs (OpenAI, fine-tuned open-source models), custom AIOps/Security models.
-    *   **Inference Serving**: Triton Inference Server / TorchServe.
-    *   **Message Queues**: Kafka / RabbitMQ.
-    *   **Caching**: Redis.
+All services are designed to be containerized and orchestrated using Kubernetes.
 
-For a detailed architecture design, please refer to [`docs/architecture.md`](docs/architecture.md).
+For a detailed understanding of the system architecture, components, design decisions, and technology stack, please refer to the [**Huizhu.AI Architecture Document (`docs/architecture.md`)**](docs/architecture.md).
 
-## 🚀 Getting Started
+## Technology Stack (Highlights)
 
-This section will be updated as the project progresses. Currently, the focus is on setting up the foundational code structure.
+* **Backend**: Go (Golang)
+* **API & Communication**: gRPC (inter-service), RESTful APIs (via API Gateway), WebSockets
+* **Frontend**: (To be decided - e.g., Vue.js, React)
+* **Orchestration**: Kubernetes, Docker
+* **Databases**:
+    * PostgreSQL/MySQL (Relational data)
+    * Elasticsearch (Logging, full-text search)
+    * Prometheus/Mimir (Time-series data for monitoring & AIOps)
+    * Vector Databases (e.g., Qdrant, Milvus, Weaviate for RAG)
+    * MinIO/S3-compatible (Object storage for files, models)
+* **Messaging**: NATS / Kafka / RabbitMQ (Asynchronous tasks, event-driven architecture)
+* **Caching**: Redis
+* **Observability**: Prometheus, Grafana, OpenTelemetry, ELK Stack (or similar)
+* **AI/ML**: LangChain (Go version), Hugging Face models, OpenAI API integration, custom models.
+
+## Getting Started
+
+This section guides you through setting up Huizhu.AI for development and testing.
 
 ### Prerequisites
 
-*   Go 1.20+
-*   Docker & Docker Compose
-*   Kubernetes (e.g., Minikube, Kind, or a cloud provider's K8s service)
-*   `make`
-*   `protoc` (Protocol Buffer Compiler) and Go plugins (`protoc-gen-go`, `protoc-gen-go-grpc`)
+* **Go**: Version 1.21 or higher.
+* **Docker & Docker Compose**: For managing services and dependencies locally.
+* **Kubernetes Cluster**: Optional, for deployment (e.g., Minikube, Kind, or a cloud provider's K8s).
+* **`protoc` Compiler**: For compiling Protocol Buffer definitions.
+    * `protoc-gen-go`
+    * `protoc-gen-go-grpc`
+* **Task runner**: (Optional, e.g., Make or Task for script execution). Our scripts are primarily shell scripts.
 
-### Installation & Setup (Conceptual)
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/turtacn/huizhu.ai.git
-    cd huizhu.ai
-    ```
-
-2.  **Install Go dependencies:**
-    ```bash
-    go mod tidy
-    ```
-
-3.  **Generate Protobuf/gRPC code:**
-    ```bash
-    make generate-proto
-    ```
-
-4.  **Set up configuration:**
-    *   Copy template configuration files from `configs/` (e.g., `cp configs/user_service.template.yaml configs/user_service.yaml`).
-    *   Update the copied configuration files with your environment-specific settings (database DSNs, API keys, etc.).
-
-5.  **Build services:**
-    ```bash
-    make build # Builds all services
-    # or
-    make build-user-service # Builds a specific service
-    ```
-
-6.  **Run services (locally using `make` or Docker Compose):**
-    *   **Using `make` (for individual service development):**
-        ```bash
-        make run-user-service
-        make run-apiserver
-        # ... and so on for other services
-        ```
-    *   **Using Docker Compose (for a local multi-service environment - `docker-compose.yml` to be added):**
-        ```bash
-        docker-compose up -d
-        ```
-
-7.  **Deployment (Kubernetes - YAMLs in `deployments/kubernetes/`):**
-    ```bash
-    kubectl apply -f deployments/kubernetes/namespace.yaml
-    kubectl apply -f deployments/kubernetes/postgres-deployment.yaml # Example dependency
-    kubectl apply -f deployments/kubernetes/user-service-deployment.yaml
-    # ... deploy other services and ingress
-    ```
-
-## 🛠️ Development
-
-### Directory Structure
-
-The project follows a layout inspired by the [Standard Go Project Layout](https://github.com/golang-standards/project-layout).
-
-````
-
-huizhu.ai/
-├── api/             # API definitions (Protobuf, OpenAPI specs)
-├── cmd/             # Main applications for each service
-├── configs/         # Configuration file templates and defaults
-├── deployments/     # Dockerfiles, Kubernetes YAMLs, etc.
-├── docs/            # Project documentation
-├── internal/        # Private application and library code (not importable by others)
-│   ├── apiserver/   # API Gateway implementation
-│   ├── biz/         # Business logic (domain, application services) for each microservice
-│   ├── constant/    # Project-level constants
-│   ├── data/        # Data access layer (repository implementations)
-│   ├── server/      # Common gRPC/HTTP server setup
-│   ├── types/       # Project-level shared data types (enums)
-│   └── worker/      # Background job/task implementations
-├── pkg/             # Public library code, shareable with external applications
-│   ├── auth/
-│   ├── cache/
-│   ├── config/
-│   ├── errors/
-│   ├── logger/
-│   ├── metrics/
-│   ├── model/       # Common data models (e.g., pagination)
-│   ├── queue/
-│   ├── storage/
-│   ├── tracing/
-│   ├── transport/   # gRPC/HTTP transport helpers
-│   └── utils/
-├── scripts/         # Utility scripts (build, generate, run)
-├── test/            # Test files (integration, E2E)
-├── third\_party/     # Third-party helper tools, forked code
-├── tools/           # Supporting tools for this project (e.g., code generators)
-├── web/             # Frontend projects (React/Vue)
-├── go.mod
-├── go.sum
-└── Makefile
-
-````
-
-### Coding Guidelines
-
-*   Follow standard Go idioms and best practices.
-*   Write clear, maintainable, and well-tested code.
-*   Use `pkg/errors` for error handling.
-*   Use `pkg/logger` for structured logging.
-*   Adhere to the defined API contracts in `api/proto/`.
-*   Write unit tests for business logic and data access layers.
-*   Write integration tests for service interactions.
-
-### Running Tests
+### Clone the Repository
 
 ```bash
-make test         # Run all unit tests
-make test-coverage # Run tests with coverage report
-# make test-e2e     # (To be implemented) Run end-to-end tests
+git clone [https://github.com/turtacn/huizhu.ai.git](https://github.com/turtacn/huizhu.ai.git)
+cd huizhu.ai
 ````
 
-### Linting
+### Configuration
+
+1.  **Application Configuration**:
+    Each service loads its configuration from YAML files and environment variables (refer to `configs/config.go`).
+    Copy the default configuration file (e.g., `configs/defaults.yaml` or service-specific defaults like `configs/user_service.example.yaml`) to your own configuration file (e.g., `configs/user_service.dev.yaml`).
+    Update the necessary parameters, such as database connection strings, LLM API keys, service ports, etc. Services will typically look for a config file path specified by an environment variable or a default location.
+
+2.  **Environment Variables**:
+    Many configurations can be overridden or set via environment variables. This is particularly useful for Docker and Kubernetes deployments. Check individual service documentation or `main.go` files for specific environment variables used.
+
+### Build
+
+1.  **Generate gRPC Stubs**:
+    If you modify any `.proto` files in the `api/proto/` directory, or if they are not pre-generated, run the script:
+
+    ```bash
+    ./scripts/gen_proto.sh
+    ```
+
+2.  **Build Services**:
+    To build all service binaries:
+
+    ```bash
+    ./scripts/build.sh
+    ```
+
+    Alternatively, to build an individual service (e.g., `user_service`):
+
+    ```bash
+    go build -o ./bin/user_service ./cmd/user_service/main.go
+    ```
+
+3.  **Build Docker Images**:
+    Dockerfiles for each service are located in `deployments/dockerfiles/`.
+    Example for `user_service`:
+
+    ```bash
+    docker build -f deployments/dockerfiles/Dockerfile.user_service -t turtacn/huizhu-user-service:latest .
+    ```
+
+    (Repeat for other services)
+
+### Running Locally (Development)
+
+It's recommended to use Docker Compose for a streamlined local development experience (a `docker-compose.yml` file should be present or created in the project root, defining all services and their dependencies like databases).
+
+1.  **Using Docker Compose** (Recommended):
+    Ensure you have a `docker-compose.yml` file configured.
+
+    ```bash
+    docker-compose up -d
+    ```
+
+    To view logs:
+
+    ```bash
+    docker-compose logs -f <service_name>
+    ```
+
+2.  **Running Individual Services Manually**:
+    If you prefer to run services directly without Docker Compose (e.g., for debugging a specific service):
+
+      * Ensure all dependencies (databases, message queues) are running and accessible.
+      * Set necessary environment variables for configuration.
+      * Run the service binary:
+        ```bash
+        ./bin/user_service
+        # or using go run
+        # go run ./cmd/user_service/main.go
+        ```
+
+### Running on Kubernetes
+
+1.  **Prerequisites**:
+
+      * A running Kubernetes cluster.
+      * `kubectl` configured to communicate with your cluster.
+      * Docker images for all services pushed to a container registry accessible by your cluster.
+
+2.  **Deploy**:
+    Kubernetes manifests are located in `deployments/kubernetes/services/`.
+
+    ```bash
+    # Apply common configurations first (if any)
+    # kubectl apply -f deployments/kubernetes/common/
+
+    # Deploy each service
+    kubectl apply -f deployments/kubernetes/services/user-service.yaml
+    kubectl apply -f deployments/kubernetes/services/knowledge-service.yaml
+    # ... and so on for all other services and the API gateway
+    ```
+
+## Running Tests
+
+To run all unit and integration tests (where applicable):
 
 ```bash
-make lint
+./scripts/run_tests.sh
 ```
 
-(Requires `golangci-lint` to be installed)
+Or, for more granular control:
 
-## 🤝 Contributing
+```bash
+go test -v ./...
+# To run tests for a specific package:
+# go test -v ./internal/service/user/application/...
+```
 
-Contributions are welcome! As the project is in its early stages, the primary focus is on establishing the core architecture and functionality.
+## Project Structure
 
-If you'd like to contribute, please:
+A brief overview of the main directories:
 
-1. **Fork the repository.**
-2. **Create a new branch** for your feature or bug fix: `git checkout -b feature/your-feature-name` or `bugfix/issue-tracker-id`.
-3. **Make your changes**, adhering to the coding guidelines.
-4. **Add tests** for your changes.
-5. **Ensure all tests pass** (`make test`).
-6. **Ensure code is linted** (`make lint`).
-7. **Commit your changes** with clear and descriptive commit messages.
-8. **Push your branch** to your fork: `git push origin feature/your-feature-name`.
-9. **Open a Pull Request** to the `main` branch of the original repository.
+  * `api/proto/`: Contains Protocol Buffer definitions for gRPC services.
+  * `cmd/`: Main applications for each microservice.
+  * `configs/`: Configuration files and loading logic.
+  * `deployments/`: Dockerfiles, Kubernetes manifests, and other deployment-related files.
+  * `docs/`: Project documentation, including this README and the detailed [architecture document](docs/architecture.md).
+  * `internal/`: Private application and library code. This is where the core logic of each service and shared platform components reside.
+      * `internal/service/<service_name>/`: Code for individual microservices.
+      * `internal/platform/`: Shared platform-level libraries (logging, errors, DB connectors, etc.).
+      * `internal/common/`: Low-level shared constants, enums, and basic types.
+  * `pkg/`: Public library code, intended to be importable by external projects (e.g., a client SDK for Huizhu.AI).
+  * `scripts/`: Utility scripts for building, testing, generating code, etc.
+  * `test/`: Integration and end-to-end tests.
+  * `web/`: Placeholder for frontend application code (may be moved to a separate repository).
 
-Please discuss significant changes by opening an issue first.
+For a more detailed explanation of the project structure, refer to the [architecture document](docs/architecture.md).
 
-## 📄 License
+## Contributing
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+We welcome contributions to Huizhu.AI\! Whether it's bug fixes, new features, or improvements to documentation, your help is appreciated.
 
-## 📞 Contact
+Please read our [**Contributing Guidelines (`CONTRIBUTING.md`)**](https://www.google.com/search?q=CONTRIBUTING.md) for detailed information on how to contribute, including our code of conduct, development process, and coding standards. (Note: `CONTRIBUTING.md` should be created).
 
-* **Project Lead**: \[Your Name/Organization] - \[[your.email@example.com](mailto:xudotu@gmail.com)]
-* **GitHub Issues**: For bugs, feature requests, and discussions.
+**General Contribution Flow:**
 
----
+1.  **Fork** the repository on GitHub.
+2.  **Clone** your fork locally: `git clone https://github.com/YOUR_USERNAME/huizhu.ai.git`
+3.  Create a **new branch** for your changes: `git checkout -b feature/your-feature-name` or `bugfix/issue-number`.
+4.  Make your **changes**, adhering to the project's coding style (`gofmt`, `golangci-lint`).
+5.  **Test** your changes thoroughly. Add new tests if applicable.
+6.  **Commit** your changes with clear, descriptive commit messages.
+7.  **Push** your changes to your fork: `git push origin feature/your-feature-name`.
+8.  Open a **Pull Request (PR)** against the `main` branch of `turtacn/huizhu.ai`.
+9.  Engage in the PR review process and address any feedback.
 
-*This README is a living document and will be updated as the project evolves.*
+Please use the GitHub **Issue Tracker** to report bugs, suggest features, or ask questions.
 
+## License
+
+This project is licensed under the **Apache License 2.0**. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for details. (Note: `LICENSE` file should be created).
+
+## Contact & Support
+
+  * **Issues**: For bugs, feature requests, or problems, please [open an issue on GitHub](https://www.google.com/search?q=https://github.com/turtacn/huizhu.ai/issues).
+  * **Discussions**: For general questions or discussions, please use the [GitHub Discussions tab](https://www.google.com/search?q=https://github.com/turtacn/huizhu.ai/discussions) (if enabled).
