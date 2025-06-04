@@ -1,4 +1,4 @@
-# Huizhu.AI (慧举AI)
+# Huizhu.AI (慧助.AI)
 
 [![许可证: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![文档](https://img.shields.io/badge/Docs-Huizhu.AI-orange)](docs/architecture.md)
 
