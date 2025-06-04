@@ -137,7 +137,7 @@ graph TD
 系统推荐使用 Kubernetes [7] 进行容器编排，实现高可用、弹性伸缩和滚动更新。
 
 ```mermaid
-graph TD
+graph LR
     %% Legend
     %% subgraph LEGEND [图例（Legend）]
     %%    direction LR
@@ -434,19 +434,19 @@ huizhu.ai/
 
 ## 6. 参考资料
 
-[1] OpenAI. (n.d.). *OpenAI API*. Retrieved from `https://platform.openai.com/docs`
-[2] GitHub. (n.d.). *golang-standards/project-layout*. Retrieved from `https://github.com/golang-standards/project-layout` (Conceptual reference for Go project structure)
-[3] Hugging Face. (n.d.). *Hugging Face Transformers*. Retrieved from `https://huggingface.co/docs/transformers/index`
-[4] LangChain AI. (n.d.). *LangChain*. Retrieved from `https://github.com/langchain-ai/langchain` (Conceptual reference for Go: `https://github.com/tmc/langchaingo`)
-[5] Liu, J. (n.d.). *LlamaIndex (formerly GPT Index)*. Retrieved from `https://github.com/jerryjliu/llama_index`
-[6] Richardson, C. (n.d.). *Microservices Patterns*. Retrieved from `https://microservices.io/`
-[7] Kubernetes. (n.d.). *Kubernetes Documentation*. Retrieved from `https://kubernetes.io/docs/`
-[8] Wiggins, A. (n.d.). *The Twelve-Factor App*. Retrieved from `https://12factor.net/`
-[9] Prometheus. (n.d.). *Prometheus - Monitoring system & time series database*. Retrieved from `https://prometheus.io/docs/introduction/overview/`
-[10] Elastic. (n.d.). *The ELK Stack: Elasticsearch, Logstash, Kibana*. Retrieved from `https://www.elastic.co/elastic-stack`
-[11] OpenTelemetry. (n.d.). *OpenTelemetry Documentation*. Retrieved from `https://opentelemetry.io/docs/`
-[12] gRPC. (n.d.). *gRPC Documentation*. Retrieved from `https://grpc.io/docs/what-is-grpc/introduction/`
-[13] StackStorm. (n.d.). *StackStorm - Event-driven automation*. Retrieved from `https://github.com/StackStorm/st2`
-[14] Wazuh. (n.d.). *Wazuh - Open Source XDR and SIEM*. Retrieved from `https://github.com/wazuh/wazuh`
-[15] deepset. (n.d.). *Haystack - End-to-End NLP Frameworks*. Retrieved from `https://github.com/deepset-ai/haystack`
-[16] Gin Web Framework. (n.d.). *Gin Web Framework Documentation*. Retrieved from `https://gin-gonic.com/docs/`
+- [1] OpenAI. (n.d.). *OpenAI API*. Retrieved from `https://platform.openai.com/docs`
+- [2] GitHub. (n.d.). *golang-standards/project-layout*. Retrieved from `https://github.com/golang-standards/project-layout` (Conceptual reference for Go project structure)
+- [3] Hugging Face. (n.d.). *Hugging Face Transformers*. Retrieved from `https://huggingface.co/docs/transformers/index`
+- [4] LangChain AI. (n.d.). *LangChain*. Retrieved from `https://github.com/langchain-ai/langchain` (Conceptual reference for Go: `https://github.com/tmc/langchaingo`)
+- [5] Liu, J. (n.d.). *LlamaIndex (formerly GPT Index)*. Retrieved from `https://github.com/jerryjliu/llama_index`
+- [6] Richardson, C. (n.d.). *Microservices Patterns*. Retrieved from `https://microservices.io/`
+- [7] Kubernetes. (n.d.). *Kubernetes Documentation*. Retrieved from `https://kubernetes.io/docs/`
+- [8] Wiggins, A. (n.d.). *The Twelve-Factor App*. Retrieved from `https://12factor.net/`
+- [9] Prometheus. (n.d.). *Prometheus - Monitoring system & time series database*. Retrieved from `https://prometheus.io/docs/introduction/overview/`
+- [10] Elastic. (n.d.). *The ELK Stack: Elasticsearch, Logstash, Kibana*. Retrieved from `https://www.elastic.co/elastic-stack`
+- [11] OpenTelemetry. (n.d.). *OpenTelemetry Documentation*. Retrieved from `https://opentelemetry.io/docs/`
+- [12] gRPC. (n.d.). *gRPC Documentation*. Retrieved from `https://grpc.io/docs/what-is-grpc/introduction/`
+- [13] StackStorm. (n.d.). *StackStorm - Event-driven automation*. Retrieved from `https://github.com/StackStorm/st2`
+- [14] Wazuh. (n.d.). *Wazuh - Open Source XDR and SIEM*. Retrieved from `https://github.com/wazuh/wazuh`
+- [15] deepset. (n.d.). *Haystack - End-to-End NLP Frameworks*. Retrieved from `https://github.com/deepset-ai/haystack`
+- [16] Gin Web Framework. (n.d.). *Gin Web Framework Documentation*. Retrieved from `https://gin-gonic.com/docs/`
