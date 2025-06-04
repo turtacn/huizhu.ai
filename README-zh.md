@@ -2,7 +2,7 @@
 
 [![许可证: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![文档](https://img.shields.io/badge/Docs-Huizhu.AI-orange)](docs/architecture.md)
 
-**Huizhu.AI (慧举AI，原“智能业务伙伴”)** 是一个旨在通过人工智能驱动的解决方案，为企业客户的日常业务运营赋能的综合性平台。它将生成式人工智能（Generative AI）、智能运维（AIOps）和人工智能安全（AI Security）能力集成到一个统一的、对话式的交互界面中。
+**Huizhu.AI (慧助AI，原“智能业务伙伴”)** 是一个旨在通过人工智能驱动的解决方案，为企业客户的日常业务运营赋能的综合性平台。它将生成式人工智能（Generative AI）、智能运维（AIOps）和人工智能安全（AI Security）能力集成到一个统一的、对话式的交互界面中。
 
 Huizhu.AI 的主要目标是通过自动化和增强各项业务职能中的任务，来提高运营效率、降低成本并改善决策制定。
 
