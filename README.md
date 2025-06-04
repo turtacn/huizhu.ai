@@ -154,17 +154,17 @@ cd huizhu.ai
   * `cmd/`: Main applications for each microservice.
   * `configs/`: Configuration files and loading logic.
   * `deployments/`: Dockerfiles, Kubernetes manifests.
-  * `docs/`: Project documentation, including [architecture](https://www.google.com/search?q=docs/architecture.md).
+  * `docs/`: Project documentation, including [architecture](docs/architecture.md).
   * `internal/`: Private application and library code.
   * `pkg/`: Public library code (e.g., client SDK).
   * `scripts/`: Utility scripts.
   * `test/`: Integration and E2E tests.
 
-For more details, see the [architecture document](https://www.google.com/search?q=docs/architecture.md).
+For more details, see the [architecture document](docs/architecture.md).
 
 ## Contributing
 
-Contributions are welcome\! Please read our [**Contributing Guidelines (`CONTRIBUTING.md`)**](https://www.google.com/search?q=CONTRIBUTING.md) (to be created) for details on our development process, coding standards, and how to submit pull requests.
+Contributions are welcome\! Please read our [**Contributing Guidelines (`CONTRIBUTING.md`)**](CONTRIBUTING.md) (to be created) for details on our development process, coding standards, and how to submit pull requests.
 
 Use the GitHub **Issue Tracker** to report bugs and suggest features.
 
@@ -174,5 +174,5 @@ This project is licensed under the **Apache License 2.0**. See the `LICENSE` fil
 
 ## Contact & Support
 
-  * **Issues**: [Open an issue on GitHub](https://www.google.com/search?q=https://github.com/turtacn/huizhu.ai/issues).
-  * **Discussions**: Use [GitHub Discussions](https://www.google.com/search?q=https://github.com/turtacn/huizhu.ai/discussions) (if enabled).
+  * **Issues**: [Open an issue on GitHub](https://github.com/turtacn/huizhu.ai/issues).
+  * **Discussions**: Use [GitHub Discussions](https://github.com/turtacn/huizhu.ai/discussions) (if enabled).
